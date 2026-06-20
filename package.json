@@ -1,0 +1,18 @@
+{
+  "name": "mahameru-basic-template",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "mahameru dev",
+    "build": "mahameru build",
+    "start": "mahameru start"
+  },
+  "keywords": [],
+  "author": "Bintan <hello@bintvn.co>",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "mahameru": "^0.0.0"
+  }
+}

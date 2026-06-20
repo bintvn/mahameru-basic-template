@@ -1,0 +1,33 @@
+{
+	"compilerOptions": {
+		"target": "ESNext",
+		"module": "NodeNext",
+		"moduleResolution": "NodeNext",
+		"rootDir": "./src",
+		"outDir": "./dist",
+		"tsBuildInfoFile": "./dist/.tsbuildinfo",
+		"strictPropertyInitialization": false,
+		"emitDecoratorMetadata": true,
+		"experimentalDecorators": true,
+		"resolveJsonModule": true,
+		"composite": true,
+		"declaration": true,
+		"types": [
+			"node"
+		],
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+		"paths": {
+			"@/*": [
+				"./src/*"
+			]
+		}
+	},
+	"include": [
+		"src/**/*",
+		"global.d.ts"
+	],
+	"exclude": [
+		"node_modules"
+	]
+}
