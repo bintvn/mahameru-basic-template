@@ -1,3 +1,5 @@
 .mahameru/
 node_modules/
 package-lock.json
+.env
+.env.*
