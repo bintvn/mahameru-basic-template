@@ -1,10 +1,10 @@
 {
   "name": "mahameru-basic-template",
   "version": "0.0.0",
-  "description": "",
+  "description": "Base MahameruJS Template",
   "main": "index.js",
   "scripts": {
-    "dev": "mahameru dev",
+    "dev": "mahameru dev -p 3000",
     "build": "mahameru build",
     "start": "mahameru start"
   },
@@ -12,7 +12,19 @@
   "author": "Bintan <hello@bintvn.co>",
   "license": "ISC",
   "type": "module",
+  "imports": {
+    "#/*": "./src/*"
+  },
   "dependencies": {
-    "mahameru": "^0.0.0"
+    "@mahameru/cli": "*",
+    "mahameru": "*"
+  },
+  "devDependencies": {
+    "@types/node": "^26.0.0",
+    "dts-bundle-generator": "^9.5.1",
+    "rimraf": "^6.1.3",
+    "tsc-alias": "^1.8.17",
+    "tsx": "^4.22.4",
+    "typescript": "^6.0.3"
   }
 }

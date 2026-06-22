@@ -1,11 +1,11 @@
-import type { MahameruConfig } from "mahameru";
+import { MahameruConfig } from 'mahameru/core'
 
-const config: MahameruConfig = {
-    options: {
-        dev: true,
-        port: 3001,
-        host: 'localhost'
-    }
+const config: Partial<MahameruConfig> = {
+    dev: true,
+    allowedOrigins: undefined,
+    host: 'localhost',
+    port: 3001,
+    trailingSlash: false,
 }
 
 export default config
