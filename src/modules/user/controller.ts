@@ -1,5 +1,5 @@
 import { MahameruRequest, MahameruResponse } from 'mahameru/core';
-import { UserService } from './user.service.js';
+import { UserService } from './service.js';
 
 export class UserController {
     private userService: UserService;
