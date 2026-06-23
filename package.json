@@ -4,7 +4,7 @@
   "description": "Base MahameruJS Template",
   "main": "index.js",
   "scripts": {
-    "dev": "mahameru dev -p 3000",
+    "dev": "mahameru dev",
     "build": "mahameru build",
     "start": "mahameru start"
   },
