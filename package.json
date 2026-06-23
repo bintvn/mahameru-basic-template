@@ -1,6 +1,6 @@
 {
   "name": "mahameru-basic-template",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Base MahameruJS Template",
   "main": "index.js",
   "scripts": {
