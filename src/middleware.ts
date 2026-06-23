@@ -2,28 +2,22 @@ import { type MahameruMiddlewareContext, type MahameruNext, MahameruResponse } f
 
 async function middleware({ path, method, request }: MahameruMiddlewareContext, next: MahameruNext): Promise<MahameruResponse> {
     const { query } = request
+    const isUserRoute = path.startsWith('/user');
 
-    if (path.startsWith('/user') && method === 'GET') {
+    if (isUserRoute && method === 'GET') {
         const secret = '1234'
 
         if (query.get('secret') !== secret) {
             return MahameruResponse.json(
-                { success: false, error: 'Unauthorized' },
+                { success: false, error: 'Unauthorized', message: 'Invalid secret. Please set the secret query parameter to 1234' },
                 { status: 401 }
             );
         }
     }
 
-    if (path === '/' && method === 'GET') {
-        return MahameruResponse.json({
-            success: true,
-            message: 'Intercepted by middleware'
-        });
-    }
-
     const response = await next();
 
-    if (path.startsWith('/user')) {
+    if (isUserRoute) {
         response.headers = {
             ...response.headers,
             'X-Protected-Route': 'true'
