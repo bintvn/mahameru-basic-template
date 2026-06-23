@@ -1,8 +1,10 @@
 {
 	"compilerOptions": {
+		"ignoreDeprecations": "6.0",
 		"target": "ESNext",
 		"module": "NodeNext",
 		"moduleResolution": "nodenext",
+		"baseUrl": ".",
 		"rootDir": "./src",
 		"outDir": "./dist",
 		"tsBuildInfoFile": "dist/.tsbuildinfo",
@@ -15,7 +17,7 @@
 		"noUnusedLocals": false,
 		"noUnusedParameters": false,
 		"paths": {
-			"#/*": [
+			"@/*": [
 				"./src/*"
 			]
 		}

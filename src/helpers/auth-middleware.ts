@@ -1,5 +1,5 @@
-import { UnauthorizedError } from "#/common/error.js";
-import { UserService } from "#/modules/user/user.service.js";
+import { UnauthorizedError } from "@/common/error.js";
+import { UserService } from "@/modules/user/user.service.js";
 import type { MahameruMiddlewareContext, MahameruRequest } from "mahameru/core";
 
 type UserAuth = {
