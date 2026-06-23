@@ -1,30 +1,17 @@
 import { type MahameruMiddlewareContext, type MahameruNext, MahameruResponse } from 'mahameru/core';
+import { authValidation } from './helpers/auth-middleware.js';
 
-async function middleware({ path, method, request }: MahameruMiddlewareContext, next: MahameruNext): Promise<MahameruResponse> {
-    const { query } = request
-    const isUserRoute = path.startsWith('/user');
+const protectedRoutes = ['/user'];
 
-    if (isUserRoute && method === 'GET') {
-        const secret = '1234'
+export default async function middleware({ request, path, container, params }: MahameruMiddlewareContext, next: MahameruNext): Promise<MahameruResponse> {
+    try {
+        if (protectedRoutes.some(route => path.startsWith(route)))
+            await authValidation(request, path, container, params, protectedRoutes);
 
-        if (query.get('secret') !== secret) {
-            return MahameruResponse.json(
-                { success: false, error: 'Unauthorized', message: 'Invalid secret. Please set the secret query parameter to 1234' },
-                { status: 401 }
-            );
-        }
+        // Other middleware logic...
+
+        return await next();
+    } catch (error) {
+        throw error
     }
-
-    const response = await next();
-
-    if (isUserRoute) {
-        response.headers = {
-            ...response.headers,
-            'X-Protected-Route': 'true'
-        };
-    }
-
-    return response;
 };
-
-export default middleware;
