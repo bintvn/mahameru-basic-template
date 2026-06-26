@@ -11,6 +11,9 @@
   "keywords": [],
   "author": "Bintan <hello@bintvn.co>",
   "license": "ISC",
+  "engines": {
+    "node": ">=20.6.0"
+  },
   "dependencies": {
     "mahameru": "^0.0.15",
     "porterman": "^0.0.2"
