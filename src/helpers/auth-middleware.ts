@@ -1,13 +1,13 @@
-import { UnauthorizedError } from "@/common/error.js";
-import { UserService } from "@/modules/user/service.js";
-import type { MahameruMiddlewareContext, MahameruRequest } from "mahameru/core";
+import { UnauthorizedError } from "@/common/error";
+import { UserService } from "@/modules/user/service";
+import type { MahameruMiddlewareContext, MahameruRequest } from "mahameru";
 
 type UserAuth = {
     username: string;
     secret: string;
 }
 
-export async function authValidation(request: MahameruRequest, path: string, container: MahameruMiddlewareContext['container'], params: MahameruMiddlewareContext['params'], protectedRoutes: string[]) {
+export async function authValidation(request: MahameruRequest, container: MahameruMiddlewareContext['container']) {
     // Example login using query
     // http://localhost:3000/user?auth={"username":"bintan","secret":"1234"}
 
@@ -15,20 +15,22 @@ export async function authValidation(request: MahameruRequest, path: string, con
     let userAuthString: null | string | UserAuth = query.get('auth');
 
     if (!userAuthString)
-        throw new UnauthorizedError('Unauthorized');
+        throw new UnauthorizedError('Invalid credentials');
 
     try {
         userAuthString = JSON.parse(userAuthString as string) as UserAuth;
     } catch (error) {
-        throw new UnauthorizedError('Unauthorized');
+        throw new UnauthorizedError('Invalid credentials');
     }
 
     const { username, secret } = userAuthString;
     const userService = container.get(UserService);
-    const result = await userService.authenticate(username, secret);
+    const user = await userService.authenticate(username, secret);
 
-    if (!result)
-        throw new UnauthorizedError('Unauthorized');
+    if (!user)
+        throw new UnauthorizedError('Invalid credentials');
+
+    request.user = user;
 
     return
 }

@@ -1,13 +1,10 @@
 {
 	"compilerOptions": {
-		"ignoreDeprecations": "6.0",
-		"target": "ESNext",
-		"module": "NodeNext",
+		"target": "ES2022",
+		"module": "nodenext",
 		"moduleResolution": "nodenext",
-		"baseUrl": ".",
-		"rootDir": "./src",
-		"outDir": "./dist",
-		"tsBuildInfoFile": "dist/.tsbuildinfo",
+		"esModuleInterop": true,
+		"rootDir": "src",
 		"resolveJsonModule": true,
 		"emitDecoratorMetadata": true,
 		"experimentalDecorators": true,
@@ -23,10 +20,12 @@
 		}
 	},
 	"include": [
-		"./src/**/*.ts"
+		"src/**/*.ts",
+		"global.d.ts",
+		"mahameru.d.ts"
 	],
 	"exclude": [
-		"./node_modules",
-		"./dist"
+		"node_modules",
+		"dist"
 	]
 }

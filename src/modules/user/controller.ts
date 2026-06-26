@@ -1,5 +1,5 @@
-import { MahameruRequest, MahameruResponse } from 'mahameru/core';
-import { UserService } from './service.js';
+import { type MahameruRequest, MahameruResponse } from 'mahameru';
+import type { UserService } from './service';
 
 export class UserController {
     private userService: UserService;
@@ -15,9 +15,6 @@ export class UserController {
 
     async getUserById(request: MahameruRequest, id: string) {
         const user = await this.userService.findOne(id);
-
-        if (!user)
-            return MahameruResponse.json({ success: false, error: 'User tidak ditemukan' }, { status: 404 });
 
         return MahameruResponse.json({ success: true, data: user });
     }

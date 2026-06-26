@@ -1,6 +1,6 @@
 {
   "name": "mahameru-basic-template",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Base MahameruJS Template",
   "main": "index.js",
   "scripts": {
@@ -11,10 +11,9 @@
   "keywords": [],
   "author": "Bintan <hello@bintvn.co>",
   "license": "ISC",
-  "type": "module",
   "dependencies": {
-    "@mahameru/cli": "*",
-    "mahameru": "*"
+    "mahameru": "^0.0.15",
+    "porterman": "^0.0.2"
   },
   "devDependencies": {
     "@types/node": "^26.0.0",

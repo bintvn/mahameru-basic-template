@@ -1,4 +1,6 @@
-export type UserType = {
+import { NotFoundError } from "@/common/error"
+
+export type User = {
     id: string
     name: string
     username: string
@@ -6,7 +8,7 @@ export type UserType = {
 }
 
 export class UserService {
-    private users: UserType[] = [
+    private users: User[] = [
         { id: '1', name: 'Bintan', username: 'bintan', secret: '1234' },
         { id: '2', name: 'Her Name', username: 'hername', secret: '4321' },
     ];
@@ -16,18 +18,23 @@ export class UserService {
     }
 
     async findOne(id: string) {
-        return this.users.find(u => u.id === id) || null;
+        const user = this.users.find(u => u.id === id) || null;
+
+        if (!user)
+            throw new NotFoundError(`User with id ${id} not found`);
+
+        return user
     }
 
-    async authenticate(username: string, secret: string): Promise<boolean> {
+    async authenticate(username: string, secret: string): Promise<User | null> {
         const user = this.users.find(u => u.username === username) || null;
 
         if (!user)
-            return false
+            return null
 
         if (user.secret !== secret)
-            return false
+            return null
 
-        return true
+        return user
     }
 }

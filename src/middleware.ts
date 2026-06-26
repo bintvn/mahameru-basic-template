@@ -1,17 +1,26 @@
-import { type MahameruMiddlewareContext, type MahameruNext, MahameruResponse } from 'mahameru/core';
-import { authValidation } from './helpers/auth-middleware.js';
+import type { MahameruMiddleware, ProtectedRoute } from 'mahameru';
+import { authValidation } from './helpers/auth-middleware';
 
-const protectedRoutes = ['/user'];
+export const protectedRoutes: ProtectedRoute<MahameruGeneratedRoutes> = [
+    '/user',
+    '/me'
+];
 
-export default async function middleware({ request, path, container, params }: MahameruMiddlewareContext, next: MahameruNext): Promise<MahameruResponse> {
+const middleware: MahameruMiddleware = async (context, isProtectedRoute, next) => {
     try {
-        if (protectedRoutes.some(route => path.startsWith(route)))
-            await authValidation(request, path, container, params, protectedRoutes);
+        const { request, container } = context;
+
+        // Example login using query
+        // http://localhost:3000/user?auth={"username":"bintan","secret":"1234"}
+        if (isProtectedRoute)
+            await authValidation(request, container);
 
         // Other middleware logic...
 
         return await next();
     } catch (error) {
-        throw error
+        throw error;
     }
 };
+
+export default middleware;

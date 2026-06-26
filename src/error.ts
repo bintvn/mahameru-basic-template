@@ -1,17 +1,20 @@
-import { MahameruError, MahameruHttpServerError, MahameruResponse, type MahameruErrorHandlerContext } from "mahameru/core";
-import { UnauthorizedError } from "./common/error.js";
+import { type MahameruErrorHandler, MahameruResponse } from "mahameru";
+import { NotFoundError, UnauthorizedError } from "./common/error";
 
-export default async function errorHandler({ error }: MahameruErrorHandlerContext) {
-    if (error instanceof UnauthorizedError)
-        return MahameruResponse.json({ success: false, error: error.name, message: error.message }, { status: error.statusCode });
-
-    if (error instanceof Error)
-        return MahameruResponse.json({ success: false, error: error.name, message: error.message }, { status: 400 });
+const errorHandler: MahameruErrorHandler = async ({ error }) => {
+    if (error instanceof UnauthorizedError || error instanceof NotFoundError)
+        return MahameruResponse.json({
+            success: false,
+            error: error.code,
+            message: error.message
+        }, { status: error.statusCode });
 
     console.error(error);
 
-    if (error instanceof MahameruHttpServerError || error instanceof MahameruError)
-        return MahameruResponse.json({ success: false, error: error.name, message: error.message }, { status: 500 });
-
-    return MahameruResponse.json({ success: false, error: 'Internal Server Error' }, { status: 500 });
+    return MahameruResponse.json({
+        success: false,
+        error: 'Internal Server Error'
+    }, { status: 500 });
 }
+
+export default errorHandler

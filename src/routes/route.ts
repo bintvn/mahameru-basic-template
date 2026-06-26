@@ -1,4 +1,4 @@
-import { type RouteHandler, MahameruResponse } from 'mahameru/core'
+import { type RouteHandler, MahameruResponse } from 'mahameru'
 
 export const GET: RouteHandler = async (request) => {
     return MahameruResponse.json({
