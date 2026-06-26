@@ -15,7 +15,7 @@
     "node": ">=20.6.0"
   },
   "dependencies": {
-    "mahameru": "^0.0.15",
+    "mahameru": "^0.0.16",
     "porterman": "^0.0.3"
   },
   "devDependencies": {
