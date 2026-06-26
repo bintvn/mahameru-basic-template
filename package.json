@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "mahameru": "^0.0.15",
-    "porterman": "^0.0.2"
+    "porterman": "^0.0.3"
   },
   "devDependencies": {
     "@types/node": "^26.0.0",
