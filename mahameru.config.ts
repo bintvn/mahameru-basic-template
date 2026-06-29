@@ -1,9 +1,8 @@
-import type { MahameruConfigFunction } from 'mahameru'
-import { toKebabCase } from 'porterman/string-helper'
+import type { Config } from 'mahameru'
 
-const config: MahameruConfigFunction = async (defaultConfig) => {
+const config: Config = async (defaultConfig) => {
     return {
-        name: toKebabCase('MahameruJS Node Backend Framework'),
+        name: "MahameruJS",
         port: 3000,
     }
 }

@@ -4,7 +4,6 @@
 		"module": "nodenext",
 		"moduleResolution": "nodenext",
 		"esModuleInterop": true,
-		"rootDir": "src",
 		"resolveJsonModule": true,
 		"emitDecoratorMetadata": true,
 		"experimentalDecorators": true,
@@ -26,6 +25,6 @@
 	],
 	"exclude": [
 		"node_modules",
-		"dist"
+		".mahameru"
 	]
 }
