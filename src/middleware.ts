@@ -1,8 +1,8 @@
 import type { MahameruMiddleware, ProtectedRoute } from 'mahameru';
 import { authValidation } from './helpers/auth-middleware';
 
-export const protectedRoutes: ProtectedRoute<MahameruGeneratedRoutes> = [
-    '/user',
+export const protectedRoutes: ProtectedRoute = [
+    // '/user',
     '/me'
 ];
 

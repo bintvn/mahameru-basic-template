@@ -2,7 +2,8 @@ import type { Config } from 'mahameru'
 
 const config: Config = async (defaultConfig) => {
     return {
-        port: 3000,
+        name: "MahameruJS",
+        port: 3000
     }
 }
 

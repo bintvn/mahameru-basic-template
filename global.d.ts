@@ -1,4 +1,4 @@
-import type { User } from './src/modules/user/service';
+import type { User } from "@/databases/database1/entities";
 
 declare module 'mahameru' {
     interface MahameruRequest {

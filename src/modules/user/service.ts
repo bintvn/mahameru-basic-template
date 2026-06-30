@@ -1,24 +1,42 @@
 import { NotFoundError } from "@/common/error"
-
-export type User = {
-    id: string
-    name: string
-    username: string
-    secret: string
-}
+import { User } from "@/databases/database1/entities";
+import { DataSources } from "mahameru";
+import { type Repository } from "typeorm";
 
 export class UserService {
-    private users: User[] = [
-        { id: '1', name: 'Bintan', username: 'bintan', secret: '1234' },
-        { id: '2', name: 'Her Name', username: 'hername', secret: '4321' },
-    ];
+    private userRepository: Repository<User>
 
-    async findMany() {
-        return this.users;
+    constructor({ database1 }: DataSources) {
+        this.userRepository = database1.getRepository(User);
+    }
+
+    async findMany(page: number = 1, limit: number = 10) {
+        const skip = (page - 1) * limit;
+
+        const [data, total] = await this.userRepository.findAndCount({
+            skip: skip,
+            take: limit,
+            order: {
+                id: 'DESC',
+            },
+        });
+
+        const totalPages = Math.ceil(total / limit);
+
+        return {
+            data,
+            meta: {
+                totalItems: total,
+                itemCount: data.length,
+                itemsPerPage: limit,
+                totalPages: totalPages,
+                currentPage: page,
+            },
+        };
     }
 
     async findOne(id: string) {
-        const user = this.users.find(u => u.id === id) || null;
+        const user = await this.userRepository.findOneBy({ id });
 
         if (!user)
             throw new NotFoundError(`User with id ${id} not found`);
@@ -27,7 +45,7 @@ export class UserService {
     }
 
     async authenticate(username: string, secret: string): Promise<User | null> {
-        const user = this.users.find(u => u.username === username) || null;
+        const user = await this.userRepository.findOneBy({ username });
 
         if (!user)
             return null

@@ -1,30 +1,29 @@
 {
-	"compilerOptions": {
-		"target": "ES2022",
-		"module": "nodenext",
-		"moduleResolution": "nodenext",
-		"esModuleInterop": true,
-		"resolveJsonModule": true,
-		"emitDecoratorMetadata": true,
-		"experimentalDecorators": true,
-		"types": [
-			"node"
-		],
-		"noUnusedLocals": false,
-		"noUnusedParameters": false,
-		"paths": {
-			"@/*": [
-				"./src/*"
-			]
-		}
-	},
-	"include": [
-		"src/**/*.ts",
-		"global.d.ts",
-		"mahameru.d.ts"
-	],
-	"exclude": [
-		"node_modules",
-		".mahameru"
-	]
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "types": [
+      "node"
+    ],
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ]
+    }
+  },
+  "include": [
+    "src/**/*.ts",
+    ".mahameru/types/**/*.d.ts",
+    "global.d.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }

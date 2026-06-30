@@ -8,7 +8,9 @@ npm create mahameru@latest
 
 ### Dependencies
 * mahameru
-* porterman
+* mysql2
+* reflect-metadata
+* typeorm
 
 ### Development Dependencies
 * @types/node
