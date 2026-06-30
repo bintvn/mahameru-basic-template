@@ -15,3 +15,6 @@ npm create mahameru@latest
 ### Development Dependencies
 * @types/node
 * typescript
+
+
+Rename .env.example to `.env.development` (for development) or .env.production (for production). Running npm run build triggers the Mahameru CLI to automatically copy `.env.production` into the `.mahameru` folder for production use or deployment.
